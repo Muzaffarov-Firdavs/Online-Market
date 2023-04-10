@@ -17,6 +17,9 @@
     <thead>
         <tr>
             <th>
+                Id
+            </th>
+            <th>
                 Product Name
             </th>
             <th>
@@ -41,6 +44,9 @@
         @foreach (var item in Model)
         {
                 <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
                     <td>
                     @Html.DisplayFor(modelItem => item.ProductName)
                     </td>
@@ -60,9 +66,9 @@
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-action="ProductEdit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="ProductDetails" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="ProductDelete" asp-route-id="@item.Id">Delete</a>
                     </td>
                 </tr>
         }

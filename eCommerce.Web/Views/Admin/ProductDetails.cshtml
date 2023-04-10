@@ -1,0 +1,46 @@
+﻿@using eCommerce.Domain.Entities.Products;
+@model Product
+
+@{
+    ViewData["Title"] = "ProductDetails";
+}
+
+<div class="card">
+    <h5 class="card-header">Product Information</h5>
+    <div class="card-body">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th scope="row">Id</th>
+                    <td>@Model.Id</td>
+                </tr>
+                <tr>
+                    <th scope="row">ProductName</th>
+                    <td>@Model.ProductName</td>
+                </tr>
+                <tr>
+                    <th scope="row">FirmName</th>
+                    <td>@Model.FirmName</td>
+                </tr>
+                <tr>
+                    <th scope="row">Description</th>
+                    <td>@Model.Description</td>
+                </tr>
+                <tr>
+                    <th scope="row">Category</th>
+                    <td>@Model.Category</td>
+                </tr>
+                <tr>
+                    <th scope="row">Count</th>
+                    <td>@Model.Count</td>
+                </tr>
+                <tr>
+                    <th scope="row">Price</th>
+                    <td>@Model.Price</td>
+                </tr>
+            </tbody>
+        </table>
+        <a asp-action="ProductEdit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="ProductManagement" class="btn btn-secondary">Back to List</a>
+    </div>
+</div> 

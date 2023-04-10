@@ -120,7 +120,7 @@ namespace eCommerce.Web.Controllers
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //----------------------------------------Product management admin-----------------------------------\\
 
-        private readonly IProductService  _productService = new ProductService();
+        private readonly IProductService _productService = new ProductService();
 
 
         public async Task<IActionResult> ProductManagement()
@@ -149,6 +149,76 @@ namespace eCommerce.Web.Controllers
 
             return View(product);
         }
+        //-------------------------------------------------------------------------------------
+
+        public async Task<IActionResult> ProductDetails(long id)
+        {
+            return View(await _productService.GetServiceAsync(u => u.Id == id));
+        }
+        //----------------------------------------------------------------------------------
+
+        public async Task<IActionResult> ProductEdit(long id)
+        {
+            var product = await _productService.GetServiceAsync(u => u.Id == id);
+
+            var productCreationDto = new ProductCreationDto
+            {
+                Id = product.Id,
+                ProductName = product.ProductName,
+                FirmName = product.FirmName,
+                Description = product.Description,
+                Category = product.Category,
+                Count = product.Count,
+                Price = product.Price
+            };
+
+            return View(productCreationDto);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ProductEdit(long id, ProductCreationDto product)
+        {
+            if (ModelState.IsValid)
+            {
+                var updatedProduct = await _productService.UpdateServiceAsync(u => u.Id == id, product);
+                return RedirectToAction("ProductManagement");
+            }
+            return View(product);
+        }
+        //----------------------------------------------------------------------------------
+
+        public async Task<IActionResult> ProductDelete(long id)
+        {
+
+            var product = await _productService.GetServiceAsync(u => u.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            var productCreationDto = new ProductCreationDto
+            {
+                Id = product.Id,
+                ProductName = product.ProductName,
+                FirmName = product.FirmName,
+                Description = product.Description,
+                Category = product.Category,
+                Count = product.Count,
+                Price = product.Price
+            };
+
+            return View(productCreationDto);
+        }
+
+        [HttpPost, ActionName("ProductDelete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ProductDeleteConfirmed(int id)
+        {
+            await _productService.DeleteServiceAsync(u => u.Id == id);
+
+            return RedirectToAction("UserManagement");
+        }
+
 
 
     }
