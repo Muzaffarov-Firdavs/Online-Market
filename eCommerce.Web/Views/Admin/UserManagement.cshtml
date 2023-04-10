@@ -1,0 +1,84 @@
+﻿@using eCommerce.Domain.Entities.Users;
+@model List<User>
+
+@{
+    ViewData["Title"] = "UserManagement";
+}
+
+<h1>UserManagement</h1>
+
+
+
+<div class="text-center">
+    <button type="button" class="btn btn-primary">
+        <a asp-action="UserCreate" class="text-white">Create New</a>
+    </button>
+</div>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                FirstName
+            </th>
+            <th>
+                LastName
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Password
+            </th>
+            <th>
+                Role
+            </th>
+            <hr />
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    <a asp-action="UserEdit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="UserDetails" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="UserDelete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<hr/>
+<a href="@Url.Action("Index", "Admin")" class="btn btn-primary">Back to Admin Panel</a>

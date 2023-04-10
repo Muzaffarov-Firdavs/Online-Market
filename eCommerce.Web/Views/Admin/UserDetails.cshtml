@@ -1,0 +1,43 @@
+﻿@using eCommerce.Domain.Entities.Users
+@model User
+
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<div class="card">
+    <h5 class="card-header">User Information</h5>
+    <div class="card-body">
+        <h5 class="card-title">@Model.FirstName  @Model.LastName</h5>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th scope="row">Id</th>
+                    <td>@Model.Id</td>
+                </tr>
+                <tr>
+                    <th scope="row">Age</th>
+                    <td>@Model.Age</td>
+                </tr>
+                <tr>
+                    <th scope="row">Email</th>
+                    <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <th scope="row">Password</th>
+                    <td>@Model.Password</td>
+                </tr>
+                <tr>
+                    <th scope="row">Phone</th>
+                    <td>@Model.Phone</td>
+                </tr>
+                <tr>
+                    <th scope="row">Role</th>
+                    <td>@Model.Role</td>
+                </tr>
+            </tbody>
+        </table>
+        <a asp-action="UserEdit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="UserManagement" class="btn btn-secondary">Back to List</a>
+    </div>
+</div> 

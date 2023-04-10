@@ -1,0 +1,74 @@
+﻿@using eCommerce.Domain.Entities.Products;
+@model List<Product>
+
+@{
+    ViewData["Title"] = "ProductManagement";
+}
+
+<h1>Product Management</h1>
+
+<div class="text-center">
+    <button type="button" class="btn btn-primary">
+        <a asp-action="ProductCreate" class="text-white">Create New</a>
+    </button>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Firm Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Category 
+            </th>
+            <th>
+                Count
+            </th>
+            <th>
+                Price
+            </th>
+            <hr />
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+                <tr>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.FirmName)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Count)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>
+
+ <hr/>
+<a href="@Url.Action("Index", "Admin")" class="btn btn-primary">Back to Admin Panel</a>
+
