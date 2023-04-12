@@ -9,7 +9,11 @@ namespace eCommerce.Service.Service
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository userRepository = new UserRepository();
+        private readonly IUserRepository userRepository;
+        public UserService(IUserRepository userRepository)
+        {
+            this.userRepository = userRepository;
+        }
         public async Task<User> CreateServiceAsync(UserCreationDto dto)
         {
             var user = new User()
