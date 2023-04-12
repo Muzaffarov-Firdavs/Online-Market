@@ -9,6 +9,7 @@ namespace eCommerce.Service.Service
 {
     public class UserService : IUserService
     {
+        //added dependency injection
         private readonly IUserRepository userRepository;
         public UserService(IUserRepository userRepository)
         {
