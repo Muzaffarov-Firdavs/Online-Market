@@ -9,7 +9,11 @@ namespace eCommerce.Service.Service
 {
     public class ProductService : IProductService
     {
-        private readonly IProductRepository productRepository = new ProductRepository();
+        private readonly IProductRepository productRepository;
+        public ProductService(IProductRepository productRepository)
+        {
+            this.productRepository = productRepository;
+        }
         public async Task<Product> CreateServiceAsync(ProductCreationDto dto)
         {
             var product = new Product
